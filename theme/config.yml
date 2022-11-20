@@ -1,0 +1,9 @@
+development:
+  password: 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
+  theme_id: "122697678945"
+  store: beefy-miracle.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - locales/
+
+#https://beefy-miracle.myshopify.com/?_ab=0&_fd=0&_sc=1&key=32027c2606c776f618f8c90527d56d7762091432ab242f6d49bc2ea40986fadd&preview_theme_id=122697678945

@@ -1,0 +1,324 @@
+{% comment %}
+  {% ------------------------------------------------ %} 
+  {% -------------- FREDERICO ALVES ----------------- %} 
+  {% ------------------------------------------------ %} 
+  {% ------------------ MERCIVE --------------------- %} 
+  {% ------------ https://mercive.com/ -------------- %}
+{% endcomment %}
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+/* Fonts */
+$font-header: Cardo, 'Helvetica Neue', Helvetica, sans-serif;
+$font-body: Lato, 'Helvetica Neue', Helvetica, sans-serif;
+
+/* Colours */
+$colour-primary: #2e3b47;
+$colour-grey: #ccc;
+$colour-white: #fff;
+$colour-black: #000;
+
+/* General */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-body;
+  color: $colour-primary;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+/* Typography */
+a, a:active, a:hover, a:visited {
+  text-decoration: none;
+  color: $colour-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-header;
+  font-weight: normal;
+  line-height: 1.25;
+  color: $colour-primary;
+  display: inline-block;
+  margin: 0 0 10px;
+  width: 100%;
+}
+
+img, picture {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+/* Containers */
+.main {}
+
+.container {
+  position: relative;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+/* Mini cart */
+.miniCart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  display: block;
+  border-left: 1px solid $colour-grey;
+  border-bottom: 1px solid $colour-grey;
+  background-color: $colour-white;
+  z-index: 1;
+
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+
+.miniCart_icon,
+.miniCart_count {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.miniCart_icon {
+  max-height: 30px;
+  height: 100%;
+  width: auto;
+
+  @media (max-width: 768px) {
+    max-height: 17px;
+  }
+}
+
+.miniCart_count {
+  font-size: 1.6rem;
+  margin-left: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+/* Collection hero */
+.collectionHero {
+  background-color: $colour-black;
+  max-height: 30rem;
+
+  @media (max-width: 768px) {
+    max-height: 20rem;
+  }
+  
+}
+
+.collectionHero_title {
+  font-size: 5rem;
+  color: $colour-white;
+  text-align: center;
+  padding: 10px 0;
+
+  position: absolute;
+  left: 0;
+  top: 40%;
+
+  @media (max-width: 768px) {
+    top: 30%;
+    font-size: 4.5rem;
+  }
+
+}
+
+.collectionHero_image {
+  opacity: 0.85;
+  width: 100%;
+  position: relative;
+  top: 0;
+
+  object-fit: cover;
+  max-height: 30rem;
+
+  @media (max-width: 768px) {
+    max-height: 20rem;
+  }
+}
+
+/* Product List */
+.productsList {
+  padding-top: 5rem;
+  margin: 0 auto;
+  max-width: 1060px;
+  position: relative;
+}
+
+.productsList_container {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+/* Product Card */
+.productCard {
+  position: relative;
+  margin: 1rem;
+  vertical-align: top;
+  max-width: calc(25% - 2rem);
+  margin-bottom: 4rem;
+
+  @media (max-width: 768px) {
+    max-width: calc(50% - 2rem);
+  }
+
+  @media (max-width: 500px) {
+    max-width: calc(100% - 0rem);
+    margin: 0 5rem;
+  }
+}
+
+.productCard_images{
+  position: relative;
+  overflow:hidden;
+}
+
+.productCard_image {
+  max-width: 100%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+
+  object-fit: cover;
+  max-height: 23.9rem;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.productCard:hover .productCard_labelCart {
+  bottom: 0;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.productCard:hover .productCard_image {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.productCard_labelCart {
+  position: absolute;
+  bottom: -1rem;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+
+  background-color: $colour-white;
+  padding: 1rem;
+  max-width: 4rem;
+  margin: 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+
+
+  @media (max-width: 768px) {
+    display: block;
+    opacity: 1;
+    bottom: 0;
+  }
+
+}
+
+.productCard_details {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.productCard_title {
+  font-family: Cardo, 'Helvetica Neue';
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  letter-spacing: 1px;
+  color: #2e3b47;
+  display: block;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  white-space: normal;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+}
+
+.producCard_color-size {
+  margin-bottom: 1rem;
+}
+
+/* Add to Cart */
+.add-to-cart {
+  cursor: pointer;
+}
+
+.productCard_button {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  background-color: red;
+  border: 0px solid $colour-grey;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* Pagination */
+.pagination__container{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.pagination {
+  display: inline-block;
+  margin-bottom: 4rem;
+}
+
+.pagination a, .pagination .current {
+  display: inline-block;
+  padding: 1rem;
+  border: 1px solid $colour-grey;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination span.current {
+  background-color: $colour-grey;
+}

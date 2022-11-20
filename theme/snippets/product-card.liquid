@@ -1,0 +1,54 @@
+{% comment %}
+  {% ------------------------------------------------ %} 
+  {% -------------- FREDERICO ALVES ----------------- %} 
+  {% ------------------------------------------------ %} 
+  {% ------------------ MERCIVE --------------------- %} 
+  {% ------------ https://mercive.com/ -------------- %}
+{% endcomment %}
+
+{% assign cart_icon = 'icon-shopping-cart.png' | asset_img_url: 'small', scale: 1 %}
+
+{%- comment -%}
+  Split the title in an array
+{%- endcomment -%}
+{% assign product_array= product.title| split: "-" %}
+{% assign product_title = product_array[0] %}
+{% assign product_color = product_array[1] %}
+{% assign product_size = product_array[2]  %}
+
+<div class="productCard card">
+  <form class="add-to-cart" product_ID="{{product.variants[0].id}}">
+    <button type="submit" class="productCard_button">
+      <span class="cardCart_icon"/>
+    </button>
+    <div class="productCard_images">
+      <img class="productCard_image" alt="{{ product.title | escape }}" src=" {{ product.featured_image | img_url: 'medium' }} ">
+      <div class="productCard_labelCart">
+        <img class="cardCart_icon" src="{{ cart_icon }}"/>
+      </div>
+    </div>
+    <div class="productCard_details">
+      <a class="productCard_title" href="#">
+        {{ product_title }}
+      </a>
+      <div class="producCard_color-size">
+        <span>
+          {%if product_color %}
+            {{ product_color }}
+          {%else%}
+            Single Color
+          {%endif%}
+          -
+          {%if product_size %}
+            {{ product_size }}
+          {%else%}
+            Single Size
+          {%endif%}
+        </span>
+      </div>
+      <div class="productCard_pricing">
+        <span>{{ product.price | money_without_trailing_zeros }}</span>
+      </div>
+    </div>
+  </form>
+</div>

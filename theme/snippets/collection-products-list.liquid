@@ -1,0 +1,21 @@
+{% comment %}
+  {% ------------------------------------------------ %} 
+  {% -------------- FREDERICO ALVES ----------------- %} 
+  {% ------------------------------------------------ %} 
+  {% ------------------ MERCIVE --------------------- %} 
+  {% ------------ https://mercive.com/ -------------- %}
+{% endcomment %}
+<section class="productsList section">
+  <div class="productsList_container">
+    {%- paginate collection.products by 8%}
+      {% for product in collection.products %}
+        {% include 'product-card' %}
+      {% endfor %}
+      <div class="pagination__container">
+        <div class="pagination">
+          {{ paginate | default_pagination: next: 'Next', previous: 'Previous' }}
+        </div>
+      </div>
+    {%- endpaginate -%}
+  </div>
+</section>

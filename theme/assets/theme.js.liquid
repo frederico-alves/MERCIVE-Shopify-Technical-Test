@@ -1,0 +1,102 @@
+{% comment %}
+  {% ------------------------------------------------ %} 
+  {% -------------- FREDERICO ALVES ----------------- %} 
+  {% ------------------------------------------------ %} 
+  {% ------------------ MERCIVE --------------------- %} 
+  {% ------------ https://mercive.com/ -------------- %}
+{% endcomment %}
+// When class add-to-cart is clicked:
+$(document).on("click", ".add-to-cart", function(){
+  // Prevent default action of button
+  event.preventDefault();
+
+  // =======================
+  // === CONFETTI EFFECT ===
+  // =======================
+
+  // do this for 1 second
+  var duration = 1 * 1000;
+  var end = Date.now() + duration;
+
+  (function frame() {
+      // launch a few confetti from the left edge
+      confetti({
+        particleCount: 7,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      // and launch a few from the right edge
+      confetti({
+        particleCount: 7,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+
+      // keep going until we are out of time
+      if (Date.now() < end) {
+          requestAnimationFrame(frame);
+      }
+    }());
+
+  // =========//==============
+
+  // =======================
+  // === ADD TO CART ===
+  // =======================
+  // Get the product ID from the button
+  let product_ID = $(this).attr("product_ID");
+  // Structure the data to send to the server
+  const data = {
+    items: [
+      {
+        quantity: 1,
+        id: product_ID
+      }
+    ]
+  }
+
+  // =======================
+  // POST => Add to Cart
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+
+  .then(async response => {
+    const fetchResponse = await response.json();
+    cartCount();
+
+    // Reload page
+    // location.reload();
+
+    console.log(product_ID + ' added to cart successfully!');
+    return fetchResponse;
+  })
+
+  .catch((error) => {
+    console.error('Error adding '+ product_ID +' to cart:', error);
+  });
+});
+
+// =======================
+// GET => Cart count
+const cartCount = () => {
+  fetch(window.Shopify.routes.root + 'cart.js', {method: 'GET'})
+
+
+  .then(async response => {
+    const fetchResponse = await response.json();
+    const cartCount = document.querySelector('.miniCart_count');
+    cartCount.innerHTML = fetchResponse.item_count;
+    return fetchResponse
+  })
+
+  .catch(error => {
+      console.error('GET Cart Error:', error);
+  });
+}
